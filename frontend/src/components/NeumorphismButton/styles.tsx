@@ -8,6 +8,7 @@ export const StyledNeumorphismButton = styled.button`
   border: 0;
   width: fit-content;
   padding: 5px;
+  font-size: 15px;
 
   &:hover {
     box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6),

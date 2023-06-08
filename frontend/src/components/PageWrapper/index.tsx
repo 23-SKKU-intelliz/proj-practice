@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
-import { StyledWrapper } from "src/components/Wrapper/styles";
+import { StyledWrapper } from "src/components/PageWrapper/styles";
 
 interface Props {
   children: ReactElement | ReactElement[];
 }
 
-function Wrapper({ children }: Props) {
+function PageWrapper({ children }: Props) {
   return <StyledWrapper>{children}</StyledWrapper>;
 }
 
-export default Wrapper;
+export default PageWrapper;

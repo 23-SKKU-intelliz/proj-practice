@@ -2,9 +2,7 @@ import { StyledRegisterForm } from "src/components/RegisterForm/styles";
 import { FormEvent } from "react";
 import NeumorphismButton from "src/components/NeumorphismButton";
 import axios from "axios";
-import { UserForm } from "src/types/api";
 import { useNavigate } from "react-router-dom";
-import * as process from "process";
 
 function RegisterForm() {
   const navigate = useNavigate();
@@ -18,7 +16,7 @@ function RegisterForm() {
     const emailInput = formElements.namedItem("email") as HTMLInputElement;
 
     await axios
-      .post<UserForm>("http://localhost:8000/api/users/", {
+      .post("http://127.0.0.1:8000/api/users/", {
         username: usernameInput.value,
         email: emailInput.value,
       })

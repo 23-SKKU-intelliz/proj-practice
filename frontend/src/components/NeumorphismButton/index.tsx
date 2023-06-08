@@ -3,7 +3,7 @@ import { StyledNeumorphismButton } from "src/components/NeumorphismButton/styles
 
 interface Props {
   children: ReactElement | ReactElement[] | string;
-  type: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset";
 }
 
 function NeumorphismButton({ children, type }: Props) {
