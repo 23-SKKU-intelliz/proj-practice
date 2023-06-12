@@ -1,0 +1,12 @@
+FROM python:3
+ENV PYTHONUNBUFFERED 1
+WORKDIR /app
+ADD    ./requirements.txt   /app/
+RUN    pip install -r requirements.txt
+
+# ADD    ./api        /app/api/
+# ADD    ./backend    /app/backend/
+# ADD    ./manage.py  /app/
+ADD    ./.env       /app/
+ADD    https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /
+RUN    chmod +x /wait-for-it.sh

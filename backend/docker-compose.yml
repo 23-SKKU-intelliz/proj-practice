@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "33306:3306"
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      - bash
+      - -c
+      - |
+        /wait-for-it.sh db:3306
+        python manage.py migrate
+        python manage.py runserver 0:8000
+    volumes:
+      - .:/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=True
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=db
+      - DB_PORT=3306
+
+volumes:
+  db_data: {}
